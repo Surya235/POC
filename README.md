@@ -179,15 +179,15 @@ A dynamic web application generates the pages/data in real time, as per the requ
 ---
 ![Slide29](https://user-images.githubusercontent.com/73686015/98731407-b8259e00-23c3-11eb-98a9-396cd5c4f8cb.JPG)
 
-**user Table**
+**User Table**
 ---
 ![Slide30](https://user-images.githubusercontent.com/73686015/98731412-b956cb00-23c3-11eb-92d7-fedecd90ce8f.JPG)
 
-**post Table**
+**Post Table**
 ---
 ![Slide31](https://user-images.githubusercontent.com/73686015/98731416-ba87f800-23c3-11eb-9c22-dfca4d9897bf.JPG)
 
-**comment Table**
+**Comment Table**
 ---
 ![Slide32](https://user-images.githubusercontent.com/73686015/98731419-bb208e80-23c3-11eb-8c0b-7cc85a3c2e07.JPG)
 
