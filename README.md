@@ -1,3 +1,5 @@
+## Dynamic Blogging System
+
 Step 1: Extract the Blogging System folder.
 
 Step 2: Install XAMPP and move the extracted blog_sys folder to htdocs.
