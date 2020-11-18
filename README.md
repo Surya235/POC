@@ -1,4 +1,4 @@
-# Dynamic Blogging System
+# Dynamic Blogging System(CMS)
 A dynamic web application generates the pages/data in real time, as per the request, a respective response will trigger from the server end and will reach the client end.
 ---
 ## Requirements
