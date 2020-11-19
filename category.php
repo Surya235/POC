@@ -1,75 +1,107 @@
-<!-- header -->
-<?php include("includes/header.php"); ?>	
+<?php include("includes/header.php");?>
+    <div id="wrapper">
 	
-	<!-- Navigation -->
-    <?php include("includes/navigation.php"); ?>	
-
-    <!-- Page Content -->
-    <div class="container">
-
-        <div class="row">
-
-            <!-- Blog Entries Column -->
-            <div class="col-md-8">
-
-                <h1 class="page-header">
-                    Welcome to the Blog
-                </h1>
-				
-				<?php 
-					if(isset($_GET['categorypost'])){
+        <!-- Navigation -->		
+		<?php include("includes/navigation.php");?>
+		
+        <div id="page-wrapper">
+            <div class="container-fluid">			
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Hello, I'm Admin
+                        </h1>
 						
-					$category_post = $_GET['categorypost'];
-					$query = "SELECT * FROM posts where post_category_id = '$category_post'";
-					$postcat = mysqli_query($conn, $query);
-					
-					$count = mysqli_num_rows($postcat);
-					if($count==0){echo "<h2> No Result </h2>";}
-					
-					while($row = mysqli_fetch_assoc($postcat)){
-						$post_id = $row["post_id"];
-						$post_title = $row["post_title"];
-						$post_author = $row["post_author"];
-						$post_date = $row["post_date"];
-						$post_image = $row["post_image"];
-						$post_content = $row["post_content"];
-					?>	
-					<!--Blog Post -->
-					<h2>
-						<a href="post.php?post_det_id=<?php echo $post_id ?>"><?php echo $post_title ?></a>
-					</h2>
-					<p class="lead">
-						by <a href="index.php"><?php echo $post_author ?></a>
-					</p>
-					<p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $post_date ?></p>
-					<hr>
-					<img class="img-responsive" src="images/<?php echo $post_image;?>" height=900 width=600 alt="image">
-					<hr>
-					<p><?php echo $post_content ?></p>
-					
-					<?php }} ?>
-			</div>
+						<?php
+						if(isset($_POST['submit_add_cat'])){
+							$cat = $_POST['cat_title'];
+							
+							if($cat == "" && empty($cat)){
+								echo "<h3>The field should not be empty</h3>";
+							}
+							else{
+							$query = "INSERT INTO category (category_name) VALUE ('$cat')";
+							$add_category = mysqli_query($conn, $query);
+							}
+						}
+						?> 
+						
+						<div class = "col-lg-6">
+							<form action = "" method = "post">
+								<div class = "form-group">		
+									<label for = "cat_title">Add Category</label>
+									<input class = "form-control" type = "text" name = "cat_title" placeholder = "Add category" required>
+								</div>	
+								<div class = "form-group">
+									<input class = "btn btn-primary" type = "submit" name = "submit_add_cat" value = "submit">
+								</div>
+							</form>
+							<br>	
+							
+							<!-- Edit Category -->
+							<?php
+							if(isset($_GET['edit'])){
+								 include("includes/update_category.php");
+							}
+							?>
+                        </div>
+						
+						
+						<!-- Delete Category -->
+						<?php 
+							if(isset($_GET['delete'])){
+								$del_id = $_GET['delete'];
+								$query = "DELETE FROM category WHERE category_id = '$del_id'";
+								$category = mysqli_query($conn, $query);
+								header("Location:category.php");
+							}
+						?>
+						
+						<div class = "col-lg-6">
+							<table class = "table table-bordered">
+								<tr>
+									<th>Category id</th>
+									<th>Category name</th>
+									<th>Edit</th>
+									<th>Delete</th>
+								</tr>
+								
+								<?php 
+								$query = "SELECT * FROM category";
+								$category = mysqli_query($conn, $query);
+								
+								while($row = mysqli_fetch_assoc($category)){
+									$category_name = $row["category_name"];
+									$category_id = $row["category_id"];
+																	
+								echo
+									"<tr>
+										<td> $category_id </td>
+										<td> $category_name </td>
+										<td><a href = 'category.php?edit=$category_id'>Edit</a></td>
+										<td><a href = 'category.php?delete=$category_id'>Delete</a></td>
+									</tr>";
+								} ?>								
+							</table>
+						</div>
+                    </div>
+                </div>
+                <!-- /.row -->
 
-            <!-- Blog Sidebar Widgets Column -->
-            <?php include("includes/sidebar.php"); ?>
+            </div>
+            <!-- /.container-fluid -->
 
         </div>
-        <!-- /.row -->
-
-        <hr>
-
-        <!-- Footer -->
-        <?php include("includes/footer.php"); ?>
+        <!-- /#page-wrapper -->
 
     </div>
-    <!-- /.container -->
+    <!-- /#wrapper -->
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+<?php include("includes/footer.php");?>   
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
 
-</body>
 
-</html>
+
+
+				 
