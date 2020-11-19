@@ -8,11 +8,10 @@ A dynamic web application generates the pages/data in real time, as per the requ
 * Browser
 ---
 ## Installation
-1. Extract the Blogging System folder.
-2. Install XAMPP and move the folder to C:\xampp\htdocs\.
-3. Import the database(blog_database.sql) into phpMyAdmin.
-4. Open the XAMPP Control Panel and start the Apache and MySQL Module.
-5. Open the browser and search "http://localhost/blog_sys" in address bar to see all the blog in the blog site.
+1. Install XAMPP and move the folder to C:\xampp\htdocs\.
+2. Import the database(blog_database.sql) into phpMyAdmin.
+3. Open the XAMPP Control Panel and start the Apache and MySQL Module.
+4. Open the browser and search "http://localhost/blog_sys" in address bar to see all the blog in the blog site.
 ---
 ## Features
 * Viewing Blog
