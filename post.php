@@ -13,21 +13,21 @@
 
                 <!-- Blog Post -->
 				
-				<?php 
-					if(isset($_GET['post_det_id'])){
-					$post_det_id = $_GET['post_det_id'];	
-						
-					$query = "SELECT * FROM posts  WHERE post_id = '$post_det_id'";
-					$post_details = mysqli_query($conn, $query);
-					
-					while($row = mysqli_fetch_assoc($post_details)){
-						$post_title = $row["post_title"];
-						$post_author = $row["post_author"];
-						$post_date = $row["post_date"];
-						$post_image = $row["post_image"];
-						$post_content = $row["post_content"];
-						
-				?>	
+		<?php 
+			if(isset($_GET['post_det_id'])){
+			$post_det_id = $_GET['post_det_id'];	
+
+			$query = "SELECT * FROM posts  WHERE post_id = '$post_det_id'";
+			$post_details = mysqli_query($conn, $query);
+
+			while($row = mysqli_fetch_assoc($post_details)){
+				$post_title = $row["post_title"];
+				$post_author = $row["post_author"];
+				$post_date = $row["post_date"];
+				$post_image = $row["post_image"];
+				$post_content = $row["post_content"];
+
+		?>	
 
                 <!-- Title -->
                 <h1><?php echo $post_title ;?></h1>
@@ -58,22 +58,22 @@
 
                 <!-- Comments Form -->
                 <div class="well">
-					<?php 
-						if(isset($_POST['comment_submit'])){
-							$post_det_id = $_GET['post_det_id'];
-							$comment_name = $_POST['comment_name'];
-							$comment_email = $_POST['comment_email'];
-							$comment_content = $_POST['comment_content'];
-					
-							$query = "INSERT INTO comment (comment_post_id,comment_commenter,comment_email,comment_content,comment_date,comment_status) "; 
-							$query .= "VALUES ('$post_det_id','$comment_name','$comment_email','$comment_content',now(),'Unapprove')";
-							$add_comment = mysqli_query($conn, $query);
-							
-							$query_count="UPDATE posts SET post_comment_count = post_comment_count + 1 ";
-							$query_count .= "WHERE post_id='$post_det_id' ";	
-							$comment_count = mysqli_query($conn, $query_count);
-						}
-					?>
+		<?php 
+			if(isset($_POST['comment_submit'])){
+				$post_det_id = $_GET['post_det_id'];
+				$comment_name = $_POST['comment_name'];
+				$comment_email = $_POST['comment_email'];
+				$comment_content = $_POST['comment_content'];
+
+				$query = "INSERT INTO comment (comment_post_id,comment_commenter,comment_email,comment_content,comment_date,comment_status) "; 
+				$query .= "VALUES ('$post_det_id','$comment_name','$comment_email','$comment_content',now(),'Unapprove')";
+				$add_comment = mysqli_query($conn, $query);
+
+				$query_count="UPDATE posts SET post_comment_count = post_comment_count + 1 ";
+				$query_count .= "WHERE post_id='$post_det_id' ";	
+				$comment_count = mysqli_query($conn, $query_count);
+			}
+		?>
                     <h4>Leave a Comment:</h4>
                     <form action="" method="post" role="form">
 						<div class="form-group">
@@ -95,31 +95,31 @@
                 </div>
                 <hr>
 				
-				<?php
-					if(isset($_GET['post_det_id'])){
-					$post_comm_id = $_GET['post_det_id'];
-					$query = "SELECT * FROM comment WHERE comment_status='Approve' AND comment_post_id=$post_comm_id";
-					$comment = mysqli_query($conn, $query);
-					
-					while($row = mysqli_fetch_assoc($comment)){
-						$comment_post_id = $row['comment_post_id'];
-						$comment_commenter = $row['comment_commenter'];
-						$comment_content = $row['comment_content'];
-						$comment_date = $row['comment_date'];
-						
-					?>	
-					<!-- Comment -->
-					<div class="media">
-						<div class="media-body">
-							<h4 class="media-heading"><?php echo $comment_commenter; ?>
-								<small> <?php echo $comment_date; ?></small>
-							</h4><br>
-							<?php echo $comment_content; ?>
-							<hr>
-						</div>
-					</div>
-					<?php }} ?>
-			
+		<?php
+			if(isset($_GET['post_det_id'])){
+			$post_comm_id = $_GET['post_det_id'];
+			$query = "SELECT * FROM comment WHERE comment_status='Approve' AND comment_post_id=$post_comm_id";
+			$comment = mysqli_query($conn, $query);
+
+			while($row = mysqli_fetch_assoc($comment)){
+				$comment_post_id = $row['comment_post_id'];
+				$comment_commenter = $row['comment_commenter'];
+				$comment_content = $row['comment_content'];
+				$comment_date = $row['comment_date'];
+
+			?>	
+			<!-- Comment -->
+			<div class="media">
+				<div class="media-body">
+					<h4 class="media-heading"><?php echo $comment_commenter; ?>
+						<small> <?php echo $comment_date; ?></small>
+					</h4><br>
+					<?php echo $comment_content; ?>
+					<hr>
+				</div>
+			</div>
+			<?php }} ?>
+
 
             </div>
 
