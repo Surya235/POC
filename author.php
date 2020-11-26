@@ -13,22 +13,22 @@
 
                 <!-- Blog Post -->
 				
-				<?php 
-					if(isset($_GET['author'])){
-					$author = $_GET['author'];	
-											
-					$query = "SELECT * FROM posts  WHERE post_author = '$author'";
-					$post_details = mysqli_query($conn, $query);
-					
-					while($row = mysqli_fetch_assoc($post_details)){
-						$post_id = $row["post_id"];
-						$post_title = $row["post_title"];
-						$post_author = $row["post_author"];
-						$post_date = $row["post_date"];
-						$post_image = $row["post_image"];
-						$post_content = $row["post_content"];
-						
-				?>	
+		<?php 
+			if(isset($_GET['author'])){
+			$author = $_GET['author'];	
+
+			$query = "SELECT * FROM posts  WHERE post_author = '$author'";
+			$post_details = mysqli_query($conn, $query);
+
+			while($row = mysqli_fetch_assoc($post_details)){
+				$post_id = $row["post_id"];
+				$post_title = $row["post_title"];
+				$post_author = $row["post_author"];
+				$post_date = $row["post_date"];
+				$post_image = $row["post_image"];
+				$post_content = $row["post_content"];
+
+		?>	
 
                 <!-- Title -->
                 <h2>
